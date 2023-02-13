@@ -7,6 +7,8 @@ import { configService } from "./config/config.service";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { UserEntity } from "./entities/user.entity";
 import { HouseEntity } from "./entities/house.entity";
+import { AppJapanService } from "./app.japan.service";
+import { AppDummy } from "./app.dummy";
 
 @Module({
   imports: [
@@ -38,7 +40,20 @@ import { HouseEntity } from "./entities/house.entity";
     ])
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [{
+    provide: AppService,
+    useClass: AppJapanService
+  },
+    {
+      provide: 'APP_NAME',
+      useValue: 'Nest Events Backend!'
+    },
+    {
+      provide: 'MESSAGE',
+      inject: [AppDummy],
+      useFactory: (app) => `${app.dummy()} Factory`
+    }, AppDummy
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

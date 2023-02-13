@@ -4,23 +4,23 @@ import { UserEntity } from "./entities/user.entity";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class AppService {
+export class AppJapanService {
 
   constructor(
     @InjectRepository(UserEntity)
     private readonly repository: Repository<UserEntity>,
     @Inject("APP_NAME")
     private readonly name: string,
+    @Inject("MESSAGE")
+    private readonly message: string,
   ) {
   }
 
 
   getHello(): string {
-    return "Hey Hello from " +  this.name;
+    return '「こんにちは世界」 from ' + this.name + ` ${this.message}`;
   }
 
-  async getUsers(): Promise<UserEntity[]> {
-    return await this.repository.find();
-  }
+
 
 }
