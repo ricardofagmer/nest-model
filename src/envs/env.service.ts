@@ -32,6 +32,7 @@ export class EnvService<T = any> {
      * Imports .env file from specific file path
      */
     static importEnvFile(request: { filePath: string }): void {
+
         dotenv.config({ path: request.filePath });
     }
 
@@ -57,13 +58,6 @@ export class EnvService<T = any> {
     constructor() {
         EnvService.__instance = this as any;
     }
-
-    get isMasterNode(): boolean {
-        return this.getAsBoolean('BAZA_MASTER', {
-            defaultValue: false,
-        });
-    }
-
 
 
     /**
