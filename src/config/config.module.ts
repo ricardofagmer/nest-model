@@ -36,7 +36,7 @@ export class ApiBundleModule {
         {
           provide: API_ENV_CONFIG_PATH,
           useValue: envFileConfigPath,
-        },
+        }
       ],
     };
   }
@@ -46,7 +46,6 @@ export class ApiBundleModule {
 @Module({})
 class ApiBundleGlobalModule implements OnModuleInit {
   onModuleInit(): any {
-    console.log(defaultApiBundleModuleConfig);
     EnvService.getInstance()
   }
 

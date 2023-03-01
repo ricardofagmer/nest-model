@@ -2,6 +2,7 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { ApiBundleConfig } from "./config/api-bundle.module-config";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { ValidationPipe } from "@nestjs/common";
+import * as dotenv from 'dotenv';
 
 export class ApiBootstrap {
   private app: NestExpressApplication;
@@ -10,6 +11,7 @@ export class ApiBootstrap {
   }
 
   async bootstrap(): Promise<NestExpressApplication> {
+    dotenv.config();
     this.app = await this.config.apiFactory();
 
     await this.useMiddlewares();

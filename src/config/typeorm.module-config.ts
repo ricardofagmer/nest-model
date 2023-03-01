@@ -5,6 +5,7 @@ import { getMetadataArgsStorage } from "typeorm";
 export const TYPEORM_MODULE_CONFIG: (config: any) => TypeOrmModuleAsyncOptions = () => ({
   inject: [EnvService],
   useFactory: ( env: EnvService<any>) => {
+
     return {
       type: 'postgres',
       host: process.env.DB_HOST,
