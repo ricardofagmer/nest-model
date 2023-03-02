@@ -34,6 +34,9 @@ export interface ApiBundleConfig {
 
   modulesConfig: Partial<ApiBundleModuleConfig>;
 
+  /* just another option to pass through de settings */
+  enableWhiteList: boolean;
+
 }
 
 export interface ApiBundleModuleConfig {
@@ -55,7 +58,9 @@ export class ApiBundleConfigBuilder {
 
     applications: Object.values(Application),
     features: {},
-    modulesConfig: {}
+    modulesConfig: {},
+    enableWhiteList: true,
+
   }
 
   get config(): ApiBundleConfig {
@@ -64,6 +69,12 @@ export class ApiBundleConfigBuilder {
 
   withApiFactory(factory: () => Promise<NestExpressApplication>): ApiBundleConfigBuilder {
     this._config.apiFactory = factory;
+
+    return this;
+  }
+
+  withWhitelist(): any {
+    this._config.enableWhiteList = true;
 
     return this;
   }

@@ -10,7 +10,8 @@ if (!IS_CONFIGURED) {
   apiConfig.forEach((config) => config());
 
   apiBundleConfigBuilder()
-    .withApiFactory(apiFactory);
+    .withApiFactory(apiFactory)
+    .withWhitelist().config;
 
   IS_CONFIGURED = true;
 

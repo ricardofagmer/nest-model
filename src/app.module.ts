@@ -1,26 +1,21 @@
-import { DynamicModule, Global, Module } from "@nestjs/common";
-import { ApiBundleModule } from "./config/config.module";
-import { apiBundleConfigBuilder } from "./config/api-bundle.module-config";
-import { UseValueModule } from "./use-value.module";
-import { UseClassModule } from "./use-class.module";
+import {DynamicModule, Global, Module} from "@nestjs/common";
+import {ApiBundleModule} from "./config/api-bundle.module";
+import {apiBundleConfigBuilder} from "./config/api-bundle.module-config";
+
+declare const process;
+
+export const isArgumentsInProcess = (argNames: string[]) => {
+    return process.argv.some((arg) => argNames.includes(arg));
+};
 
 @Global()
 @Module({})
 export class ApiModule {
   static forRootAsync(): DynamicModule {
-
     return {
       module: ApiModule,
       imports: [
          ApiBundleModule.forRootAsync(apiBundleConfigBuilder().config),
-          UseValueModule.forRoot({
-          name: process.env.APP_NAME,
-          message: process.env.APP_NAME
-        }),
-        UseClassModule.forRoot({
-          name: process.env.DB_NAME,
-          message: process.env.NEST_PORT
-        })
       ]
     };
   }

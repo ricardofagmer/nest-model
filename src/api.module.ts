@@ -1,6 +1,7 @@
 import { DynamicModule, Global, Module } from "@nestjs/common";
-import { ApiBundleModule } from "./config/config.module";
+import { ApiBundleModule } from "./config/api-bundle.module";
 import { apiBundleConfigBuilder } from "./config/api-bundle.module-config";
+import {getMetadataArgsStorage} from "typeorm";
 
 
 @Global()

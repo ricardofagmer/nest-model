@@ -12,6 +12,6 @@ export class UserEntity {
   @Column()
   email: string;
 
-  @OneToMany(() => HouseEntity, house => house.user)
+ @OneToMany(() => HouseEntity, house => house.user)
   houses: HouseEntity[];
 }

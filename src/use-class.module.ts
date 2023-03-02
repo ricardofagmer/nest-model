@@ -8,6 +8,7 @@ import { APP_NAME, MESSAGE } from "./constants/constants";
 export interface UseClassOptions {
   name: string;
   message: string;
+  class: any;
 }
 
 @Module({})
@@ -20,7 +21,7 @@ export class UseClassModule {
       providers: [
         {
           provide: AppService,
-          useClass: AppJapanService,
+          useClass: options.class,
         },
         {
           provide: APP_NAME,
