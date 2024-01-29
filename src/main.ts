@@ -5,6 +5,9 @@ import 'dotenv/config'
 //import config file to here
 import './main-config';
 
+require('dotenv').config();
+
+
 const appBootstrapInstance = new ApiBootstrap(apiBundleConfigBuilder().config);
 
 appBootstrapInstance
