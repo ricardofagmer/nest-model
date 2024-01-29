@@ -1,0 +1,23 @@
+# **Release <%= nextRelease.version %>
+
+This release mainly focuses on fixing some problems related to RegCF among others in the CMS and API.
+
+## **What’s new**
+
+
+## **Bugfixes**
+
+
+### **Migration**
+
+
+
+## **JIRA**
+
+<% if (commits.length === 0) { %>
+    No commits.
+<% } else { %>
+    <% commits.forEach(function(commit) { %>
+        - [<%= commit.subject %>](<%= repositoryUrl %>/commit/<%= commit.hash %>) <%= commit.message %>
+    <% }) %>
+<% } %>
